@@ -1,0 +1,45 @@
+    <v-container fluid fill-height v-if="$store.state.tv.show"
+        @click="$store.commit('showtv')"
+        style="position: fixed; z-index: 9000; top: 0; left: 0; background-color: black">
+        
+        <v-img :src="$store.state.tv.src" contain></v-img>
+        <video style="width: 100%" autoplay>
+             <source :src="$store.state.tv.src" type="video/mp4">
+        </video>
+        
+    </v-container>
+    
+<v-card :height="$store.getters.is_mobile ? 'auto': 500" min-height="200px" v-else>
+
+    <div style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; align-items: center">
+        
+
+            <video style="width: 100%; height: 100%" autoplay>
+                <source :src="$store.state.tv.src" type="video/mp4">
+            </video>
+
+            <v-img :src="$store.state.tv.src" full></v-img>
+        
+    </div>
+    
+                <v-card-title class="text-h6 text-white d-flex flex-column"
+                :style="'position: absolute; '+($store.getters.is_mobile?'bottom':'top')+': 0; left: 0;'">
+                  <p class="mt-4">
+                    {{ $store.state.tv.title }}
+                  </p>
+                   <p class="text-caption font-weight-medium">
+                    {{ $store.state.tv.subtitle }}
+                  </p>
+                </v-card-title>
+                
+            
+
+                <v-btn v-if="$store.state.tv.src"
+                    variant="text"
+                    icon="mdi-arrow-expand-all"
+                    @click="full_load()"
+                    style="position: absolute;right: 0;top: 0;"
+                ></v-btn>
+    
+    
+</v-card>

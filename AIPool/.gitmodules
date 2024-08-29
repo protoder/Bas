@@ -1,0 +1,9 @@
+[submodule "front"]
+	path = front
+	url = https://github.com/kamnsv/aipool.git
+[submodule "model/yolo5"]
+	path = model/yolo5
+	url = https://github.com/ultralytics/yolov5.git
+[submodule "model/yolo8"]
+	path = model/yolo8
+	url = https://github.com/ultralytics/ultralytics.git

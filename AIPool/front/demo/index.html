@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AIPool</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<!-- CDN -->
+	<link rel="stylesheet" href="/demo/cdn/vuetify.min.css" />
+	<link rel="stylesheet" href="/demo/cdn/icons.min.css" />
+	<link rel="stylesheet" href="/demo/cdn/style.css" />
+	<script src="/demo/cdn/vue.global.js"></script>
+	<script src="/demo/cdn/vuetify.min.js"></script>
+	<script src="/demo/cdn/vuex.global.js"></script>
+	<!-- templates -->
+	<script type="text/x-template" id="root" src="/demo/com/root.html"></script>
+	<script type="text/x-template" id="menu" src="/demo/com/menu.html"></script>
+	<script type="text/x-template" id="main" src="/demo/com/main.html"></script>
+	<script type="text/x-template" id="foot" src="/demo/com/foot.html"></script>
+	<script type="text/x-template" id="opt" src="/demo/com/opt.html"></script>
+	<script type="text/x-template" id="help" src="/demo/com/help.html"></script>
+	<script type="text/x-template" id="home" src="/demo/com/home/main.html"></script>
+	<script type="text/x-template" id="pool" src="/demo/com/home/pool.html"></script>
+	<script type="text/x-template" id="tv" src="/demo/com/home/tv.html"></script>
+	<script type="text/x-template" id="all" src="/demo/com/home/all.html"></script>
+	<script type="text/x-template" id="list" src="/demo/com/crud/list.html"></script>
+	<script type="text/x-template" id="edit" src="/demo/com/crud/edit.html"></script>
+	<!-- components -->
+	<script src="/demo/vue/menu.js"></script>
+	<script src="/demo/vue/foot.js"></script>
+	<script src="/demo/vue/help.js"></script>
+	<script src="/demo/vue/crud.js"></script>
+	<script src="/demo/vue/pool.js"></script>
+	<script src="/demo/vue/src.js"></script>
+	<script src="/demo/vue/shm.js"></script>
+	<script src="/demo/vue/scr.js"></script>
+	<script src="/demo/vue/opt.js"></script>
+	<script src="/demo/vue/home.js"></script>
+	<script src="/demo/vue/main.js"></script>
+	<script src="/demo/vue/theme.js"></script>  
+	<script src="/demo/vue/data.js"></script>
+	<script src="/demo/vue/root.js"></script>  
+  </head>
+  <body>
+    <div id="app"></div>
+	<script type="text/javascript">
+	'use struct';
+    const components = document.querySelectorAll('[type="text/x-template"]');
+    var vm;
+    var test = "{{test}}";
+    Promise.all([...components].map(c =>
+        fetch(c.src)
+        .then(response => response.text())
+        .then(html => c.innerHTML = html)
+    )).then(r => {
+        const { createApp } = Vue;
+        const { createVuetify } = Vuetify;
+        const { createStore } = Vuex;
+        const vuetify = createVuetify(theme);
+        const store = createStore(data);
+        const app = createApp(root);
+        vm = app.use(store).use(vuetify).mount('#app');
+    });
+	</script>
+  </body>
+</html>

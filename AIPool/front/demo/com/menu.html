@@ -1,0 +1,25 @@
+    <v-app-bar v-if="!$store.state.tv.show">
+      <v-app-bar-nav-icon icon="mdi-menu" 
+                          @click="drawer = !drawer"
+                          
+                          ></v-app-bar-nav-icon>
+
+      <v-toolbar-title>{{$store.state.menu[$store.state.content].title}}</v-toolbar-title>
+    </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      temporary
+    >
+    <v-list>
+        <v-list-item v-for="(item, key) in $store.state.menu"
+            :key="key"
+            :prepend-icon="item.icon" 
+            :title="item.title"
+            @click="$store.commit('show', key); drawer = false;"
+        >
+        </v-list-item>
+    </v-list>
+    
+    </v-navigation-drawer>
+    

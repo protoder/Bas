@@ -1,0 +1,19 @@
+ <v-footer v-if="!$store.state.tv.show">
+    <v-row justify="center" no-gutters>
+      <v-btn
+        v-for="link in links"
+        :key="link.src"
+        color="white"
+        variant="text"
+        class="mx-2"
+        rounded="xl"
+        :href="link.src"
+        target="_blank"
+      >
+        {{ link.title }}
+      </v-btn>
+      <v-col class="text-center mt-4" cols="12">
+        {{ new Date().getFullYear() }} &copy; <strong>{{copy}}</strong>
+      </v-col>
+    </v-row>
+  </v-footer>

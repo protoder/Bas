@@ -1,0 +1,38 @@
+     <v-form ref="form">
+        
+        <template v-for="f in model">
+            
+            <component 
+                :is="f.type"
+                v-model="f.value"
+                :label="f.label"
+                :rules="f.rules"
+                :name="f.name"
+                :items="choice(f)"
+            >
+            </component>
+            
+        </template>
+        
+
+    <v-btn
+      class="mx-2 my-2"
+      @click="$emit('submit', $refs.form)"
+    >
+    {{$store.state.item._id ? 'Сохранить' : 'Добавить'}}
+    </v-btn>
+    
+    
+    <v-btn class="mx-2 my-2" v-if="$store.state.item.id" @click="$store.commit('remove')">
+    Удалить
+    </v-btn>
+    
+    <v-btn class="mx-2 my-2" @click="model.forEach(e=>e.value=undefined);" type="reset">
+    Очистить
+    </v-btn>
+    
+    <v-btn class="mx-2 my-2" @click="$store.state.item = null">
+    Отмена
+    </v-btn>
+    
+  </v-form>

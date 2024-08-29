@@ -1,0 +1,7 @@
+@media screen and (max-width: 960px) {
+    .padding-mobile-none .v-expansion-panel-text__wrapper,
+    .padding-mobile-none .v-list-item{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

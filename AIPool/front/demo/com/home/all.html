@@ -1,0 +1,51 @@
+ <v-card
+    class="overflow-y-auto"
+    :height="$store.getters.is_mobile ? 'auto': 500"
+  >
+ 
+ <v-list v-model:opened="open">
+    <v-list-group :value="group.value" v-for="group in groups">
+        <template v-slot:activator="{ props }">
+            <v-list-item :title="group.title" v-bind="props"></v-list-item>
+        </template>
+        <template v-for="item in $store.state[group.value]">
+              <v-list-item v-if="item.pool == pool.name"
+                :key="item.name"
+                :value="item.name"
+              >
+                  
+            <v-img
+                :src="urlflow_prev(group.value, pool.name, item.name)"
+                height="225px"
+                cover
+            >
+                <v-card-title class="text-h6 text-white d-flex flex-column">
+                  <p class="mt-4">
+                    {{ item.name }}
+                  </p>
+
+                  <div>
+                    <p class="ma-0 text-body-1 font-weight-bold">
+                      {{ item.desc }}
+                    </p>
+                </div>
+                </v-card-title>
+                
+                <div class="align-self-center">
+                  <v-btn
+                    v-for="act in acts"
+                    variant="text"
+                    :prepend-icon="act.icon"
+                    @click="action(act.name, group.value, item)"
+                  >{{act.text}}</v-btn>
+                  
+                </div>
+              </v-img>
+        
+              </v-list-item>
+             
+        </template>
+    </v-list-group>
+</v-list>
+
+</v-card>

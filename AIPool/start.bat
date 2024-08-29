@@ -1,0 +1,11 @@
+set STREAM_MODE=mono
+set ASYNC_WEB=1
+set MODEL_NAME=yolo5
+set MODEL_BEST=yolo5m.pt
+set STREAM_SRC=rtsp://admin:admin@80.252.145.203:554/live/main
+set FRAME_RATE=25
+set APP_PORT=5000
+set STATIC_FOLDER=.\.\front\demo
+set STATIC_URL_PATH=/demo
+start microsoft-edge:http://localhost:%APP_PORT%/
+venv\Scripts\python back

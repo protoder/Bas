@@ -1,0 +1,19 @@
+  <v-container>
+      <v-row>
+
+          <template v-for="(item, key) in $store.state.menu">
+
+              <v-col v-if="desc[key]  != undefined" :key="key" cols="12" md="4">
+                  <v-sheet color="grey-lighten-3" height="100%">
+
+                      <v-banner :icon="item.icon" :text="desc[key]" height="100%" stacked style="grid-template-rows: 80% 20%">
+                          
+                          <template v-slot:actions density="height">
+                              <v-btn @click="$store.commit('show', key)">Перейти</v-btn>
+                          </template>
+                      </v-banner>
+                  </v-sheet>
+              </v-col>
+          </template>
+      </v-row>
+  </v-container>

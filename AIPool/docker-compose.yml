@@ -1,0 +1,62 @@
+version: "3.9"
+
+networks:
+  aipool:
+    driver: bridge
+
+    
+
+services: 
+
+    back:
+    
+        container_name: back
+        
+        environment:
+        - STREAM_SRC=rtsp://admin:admin@80.252.145.203:554/live/main
+        - FRAME_RATE=25
+        - APP_PORT=5000
+        - BASE_URI=mongodb://root:12345@base:27017/?authMechanism=SCRAM-SHA-256
+        - TEMPLATE_FOLDER=/front
+        - STATIC_FOLDER=/front/demo
+        - SKIP_FRAME=0
+        - SAVE_MAX_FRAME=0 #10000
+        - SAVE_PATH=/debug
+        
+        volumes:
+        - ./back:/back
+        - ./model:/model
+        - ./front/demo/index.html:/front/index.html
+        - ./front/demo:/front/demo/
+        - ./dist:/dist
+        - ./debug:/debug
+        - ./data:/data
+       
+        build: back
+        
+        ports:
+        - 5000:5000
+     
+        restart: always
+        
+        networks: 
+        - aipool
+        
+        command: ["python","back"]     
+        
+  #  base: 
+  #      image : mongo
+  #      
+  #      container_name: base
+  #      
+  #      environment:
+  #      - MONGO_INITDB_ROOT_USERNAME=root
+  #      - MONGO_INITDB_ROOT_PASSWORD=12345
+  #    
+  #      volumes:
+  #      - ./data/db:/data/db
+  #
+  #      restart: always
+  #      
+  #      networks: 
+  #      - aipool

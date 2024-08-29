@@ -1,0 +1,27 @@
+<v-btn prepend-icon="mdi-plus" 
+variant="outlined" 
+class="mb-4" 
+size="x-small"
+@click="$emit('add')"
+>Добавить</v-btn>
+    
+    
+<v-card class="mx-auto">
+        
+        <v-list :items="$store.getters.list">
+             <v-list-subheader>{{title}}</v-list-subheader>
+            
+              <v-list-item
+                    v-for="(item, i) in $store.getters.list"
+                    :key="item.name"
+                    :title="item.name"
+                    :subtitle="item.desc"
+                    @click="$store.commit('current', item.name)"
+                    ></v-list-item>
+      
+            
+        </v-list>
+            
+</v-card>
+
+    

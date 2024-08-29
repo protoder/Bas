@@ -1,0 +1,23 @@
+<v-container v-if="$store.getters.is_mobile">
+   <tv :pool="pool" ref="tv"></tv>
+   <all :pool="pool"></all>
+</v-container>
+
+<v-container class="bg-surface-variant" v-else>
+
+ <v-row no-gutters>
+      <v-col cols="7">
+        <v-sheet class="pa-2 ma-2">
+          <tv :pool="pool" ref="tv"></tv>
+        </v-sheet>
+      </v-col>
+
+      <v-col cols="5" v-if="!$store.state.tv.show">
+        <v-sheet class="pa-2 ma-2">
+          <all :pool="pool"></all>
+        </v-sheet>
+      </v-col>
+    </v-row>
+    
+</v-container>
+
